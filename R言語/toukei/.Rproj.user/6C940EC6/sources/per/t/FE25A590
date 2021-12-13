@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1607397319255.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4202978564",
+    "id" : "FE25A590",
+    "lastKnownWriteTime" : 1607418965,
+    "last_content_update" : 1607418965361,
+    "path" : "~/Desktop/高橋/R/toukei/toukei.Rmd",
+    "project_path" : "toukei.Rmd",
+    "properties" : {
+        "cursorPosition" : "191,0",
+        "last_setup_crc32" : "",
+        "scrollLine" : "178",
+        "source_window_id" : "",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

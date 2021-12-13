@@ -1,0 +1,8 @@
+"0","xa<- c(25,32,28,200,30)"
+"0","xb<- c(35,42,38,50,40)"
+"0","kajyuu <- xa_mean*length(xa)/(length(xa) + length(xb))+ xb_mean*length(xb)/(length(xa) + length(xb))"
+"0","kajyuu"
+"1","[1]"
+"1"," 52"
+"1","
+"

@@ -1,0 +1,200 @@
+---
+title: "toukei"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(magrittr)
+library(ggplot2)
+```
+
+## ライブラリ
+```{r}
+library(dplyr)
+library(magrittr)
+library(ggplot2)
+```
+
+# 2.1
+## 分布の特徴
+```{r}
+x <- c(52,65,42,55,48,62,95,74,58,52)
+hist(x,breaks = seq(0,100,10))
+hist(x,breaks = seq(0,100,20))
+```
+ 
+
+## 確率密度
+```{r}
+d<- density(x)
+plot(d, xlim =c(30,100) )
+```
+
+## 例2.1
+```{r}
+x1 <- c(170,173,175,170,172,165,167,168,172,174,168,170,173,178,173,163,172,173,179,172,168,167,168,174,
+        167,180,171,181,177,170,170,175,169,175,173,171,172,176,176,167,173,172,168,168,171,170,176,173,
+        170,185)
+hist(x1)
+```
+
+
+# 2.2
+## 平均
+```{r}
+x2<- c(52,65,42,55,48,62,95,74,58,52)
+mean(x2)
+heikinn<- sum(x2)/10
+heikinn
+```
+
+## 平均値の特徴
+```{r}
+a<- 70
+sum((x2-a)^2)
+sum((x2-mean(x2)+mean(x2)-a)^2)
+#sum( ( x2-mean(x2) )^2 ) +  2 * sum( (x2-mean(x2)) * (mean(x2)-a) )  + sum((mean(x2) -a)^2 )
+sum( (x2-mean(x2))^2) + 2*(mean(x2)-a) *sum( x2-mean(x2) ) + 10* ((mean(x2) -a)^2 ) 
+
+sum((x2-a)^2)
+sum( (x2-mean(x2))^2)+10* ((mean(x2) -a)^2 )
+```
+
+## 平均値の問題
+```{r}
+xa<- c(25,32,28,200,30)
+xb<- c(35,42,38,50,40)
+
+xa_mean <- mean(xa)
+xa_mean
+xb_mean <- mean(xb)
+xb_mean
+```
+
+## 中央値
+```{r}
+xa<- c(25,32,28,200,30)
+xb<- c(35,42,38,50,40)
+xa_median <- median(xa)
+xa_median
+xb_median <- median(xb)
+xb_median
+```
+
+## medianの性質
+```{r}
+xa<- c(25,32,28,200,30)
+xb<- c(35,42,38,50,40)
+xa1_median <- median(2*xa + 3)
+xa1_median
+xa2_median <- 2* median(xa) +3
+xa2_median
+
+sum(abs(xa - 30))
+sum(xa-30)
+sum(abs(xa - 80))
+sum(abs(xa - median(xa)))
+```
+
+## mode
+```{r}
+xc <- c(1,1,1,2,2,2,2,2,2,4,3,5,3,3,3)
+
+statmode <- function(x){
+  names(which.max(table(x)))
+}
+mode<- statmode(xc)
+mode
+```
+
+## 刈り込み平均
+```{r}
+xa<- c(25,32,28,200,30)
+xb<- c(35,42,38,50,40)
+mean(sort(xa)[2:4] )
+mean(sort(xb)[2:4] )
+```
+
+## 幾何平均
+```{r}
+kika<-1
+xa<- c(25,32,28,200,30)
+xb<- c(35,42,38,50,40)
+for(i in 1:(length(xa))){
+  kika <- kika*xa[i]
+}
+Gx<-kika^(1/length(xa))
+Gx
+```
+
+## 調和平均
+```{r}
+xa<- c(25,32,28,200,30)
+Hx<- length(xa)/sum(1/xa)
+Hx
+```
+
+## 平均値の関係
+```{r}
+Hx
+Gx
+xa_mean
+```
+
+## 加重平均(平均xaとxbの加重平均)
+いわゆる全体の平均
+```{r}
+xa<- c(25,32,28,200,30)
+xb<- c(35,42,38,50,40)
+kajyuu <- xa_mean*length(xa)/(length(xa) + length(xb))　+ 　xb_mean*length(xb)/(length(xa) + length(xb))
+kajyuu
+```
+
+## 加重平均の例
+まず表の作成をしてみる。
+syuuってベクトルを作らないとうまくできない。
+```{r}
+syuu<- c(16,30,20,100,80,30)
+A就職<- matrix(syuu,nrow =2,ncol=3)
+rownames(A就職)<- c("文系","理系")
+colnames(A就職)<- c("就職数", "学生数", "就職率")
+A就職
+
+syuu1<- c(60,2,100,20,60,10)
+B就職<- matrix(syuu1,nrow =2,ncol=3)
+rownames(B就職)<- c("文系","理系")
+colnames(B就職)<- c("就職数", "学生数", "就職率")
+B就職
+```
+
+実際に計算してみる。
+```{r}
+A就職率<- 20/(20+100) *80 + 100/(20+100) *30
+A就職率
+B就職率<- 100/(100+20) *60 + 20/(100+20) *10
+B就職率
+```
+
+重みがAとBでは異なるからこのような結果になる。
+重みを0.5にすると
+```{r}
+A1就職率 <- 80*0.5 +30*0.5
+A1就職率
+B1就職率 <- 60*0.5 + 10*0.5
+B1就職率
+```
+
+# 2.3
+
+
+
+
+
+
+
+
+
+
+
